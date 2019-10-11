@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>INF1339 Project 2 v02</title>
+    <style>
+        .test_class {}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+    <script>
+    var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=rainbow&api-key=cc6e695d-0f7f-4641-a7c5-c835c9b042db';
+    var articleCount = 0
+    function hello() {
+        document.getElementById('sentinel').innerHTML='HELLO'
+    }
+    function setup() {
+        noCanvas();
+        loadJSON(url, gotData);
+    }
+    function gotData(data) {
+        alert('FUNCTION GOTDATA WAS ACTIVATED')
+        var text = ''
+        for (i=0; i< data.response.docs.length; i++){
+            text = text + '<br />' + data.response.docs[i].headline.main
+        }
+        document.getElementById('test_output').innerHTML = text
+    }
+    </script>
+</head>
+<body>
+    <h3>New York Times API: Articles form all time about rainbow</h3>
+    <p id='test_output' class='test_class'></p>
+</body>
+</html>
